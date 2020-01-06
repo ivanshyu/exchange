@@ -12,18 +12,19 @@ for(let n=0;n<2;n++){
         row += '<div class="row mt-4">';
     }
     for(let i=0;i<3;i++){
-        row += '<div class="col-sm-4" id='+category[i]+' onclick="location.href=\'category/'+category[i]+'\'">'
+        let r_i = n*3+i;
+        row += '<div class="col-sm-4" id='+category[r_i]+' onclick="location.href=\'category/'+category[r_i]+'\'">'
         row += '<div class="position-relative p-3 bg-gray" style="height: 180px">'
         if(ribbon[n+i]=='hot'){
             row += '<div class="ribbon-wrapper ribbon-lg">'
             row += '<div class="ribbon bg-danger text-lg">Hot~</div></div>'
         } 
-        else if(ribbon[n*3+i]=='new'){
+        else if(ribbon[r_i]=='new'){
             row += '<div class="ribbon-wrapper ribbon-lg">'
             row += '<div class="ribbon bg-success text-lg">New!</div></div>'
         }
 
-    row += '<h5>'+category[n*3+i]+'</h5><br>'+item_number[n*3+i]+'件物品'+'</div></div>'
+    row += '<h5>'+category[r_i]+'</h5><br>'+item_number[r_i]+'件物品'+'</div></div>'
     }
     row += '</div>';
 }
