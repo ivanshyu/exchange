@@ -1,5 +1,4 @@
 let category = ['鞋子', '衣服', '類別三','類別四', '類別五', '其他'];
-let category_page = '';
 let item_number = [35894,2231,1128,3,10,1283]
 let ribbon = ['hot','new','none','none','none','none'];
 var row = '';
@@ -29,4 +28,5 @@ for(let n=0;n<2;n++){
     row += '</div>';
 }
 
-$('#firstrow').html(row)
+$('#card_body').html(row)
+

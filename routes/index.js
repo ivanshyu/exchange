@@ -66,13 +66,9 @@ router.get('/advancedsearch', function(req, res, next) {
   res.render('advancedsearch');
 });
 
-router.get('/category', function(req, res, next) {
-  res.render('category');
+router.get('/category/:page', function(req, res, next) {
+  res.render('category',{category:req.params.page});
 });
-
-
-
-
 
 
 module.exports = router;
