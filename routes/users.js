@@ -9,10 +9,13 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/register', async function(req, res, next) {
-  if(req.body.email == undefined || req.body.name == undefined ||req.body.password == undefined){
+  console.log(req.body)
+  if(req.body.email == undefined || req.body.name == undefined ||req.body.password == undefined ||
+    req.body.email == null || req.body.name == null ||req.body.password == null ||
+    req.body.email == '' || req.body.name == '' ||req.body.password == ''){
     res.json({
       status: false,
-      msg: "帳號密碼錯誤"
+      msg: "欄位不得為空"
     });
   }
   let result = await accountInsert({

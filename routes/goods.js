@@ -3,10 +3,11 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 
 var {goodsInsert, goodsFindOne, goodsDetail} = require('../models/m_goods');
+var {classFind} = require('../models/m_classify');
+
 
 router.use('/', async function(req, res, next){
     let token = req.cookies.access_token
-    console.log(token);
     if (typeof token != 'undefined') {
           // Remove Bearer from string
       jwt.verify(token, "ftP@jdnfkljdsbvdskjvbdkvn", (err, decoded) => {
@@ -64,22 +65,12 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/classify', async function(req, res, next) {
-  if(req.query.email != null){
-    let result = await goodsFindByOwner({
-      "owner": req.query.email
-    }).catch(err => {
-        res.json(err);
-    });
-    console.log(result);
-    res.json(result);
-  }
-  else{
-    let result = await goodsFindByOwner().catch(err => {
-        res.json(err);
-    });
-    console.log(result);
-    res.json(result);
-  }
+  let result = await classFind().catch(err => {
+    res.json(err);
+  });
+  console.log(result);
+  res.json(result);
+ 
 
 });
 

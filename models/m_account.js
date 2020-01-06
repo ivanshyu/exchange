@@ -5,7 +5,7 @@ const uri = "mongodb+srv://root:web@cluster0-xvsvf.mongodb.net/test?retryWrites=
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 client.connect();
-
+console.log("connected");
 
 accountInsert = async function(data) {
     return new Promise(async(resolve, reject) => {
