@@ -30,8 +30,8 @@ router.get('/orderinformation', function(req, res, next) {
   res.render('orderinformation');
 });
 
-router.get('/newitems', function(req, res, next) {
-  res.render('newitems');
+router.get('/newitem', function(req, res, next) {
+  res.render('newitem');
 });
 
 router.get('/managementitems', function(req, res, next) {
