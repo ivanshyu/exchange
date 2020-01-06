@@ -9,7 +9,7 @@ var fs = require('fs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var goodsRouter = require('./routes/goods');
-var contractRouter = require('./routes/contract');
+//var contractRouter = require('./routes/contract');
 
 
 let jwt = require('jsonwebtoken');
@@ -61,7 +61,7 @@ app.get('/form', function(req, res, next){
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/goods', goodsRouter);
-app.use('/contract', contractRouter);
+//app.use('/contract', contractRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
