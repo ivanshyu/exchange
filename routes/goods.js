@@ -29,8 +29,8 @@ router.get('/classify', async function(req, res, next) {
   let result = await classFind().catch(err => {
     res.json(err);
   });
-  console.log(result);
   res.json(result);
+  
  
 
 });
