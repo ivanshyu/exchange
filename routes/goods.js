@@ -31,13 +31,34 @@ router.use('/', async function(req, res, next){
 router.post('/', async function(req, res, next) {
     let result = await goodsInsert({
         tilte: req.body.title,
-        new_old_rate: req.body.new_old_rate,
+        class: req.body.class,
         description: req.body.description,
-        owner: req.decoded.email
+        owner: req.decoded.email,
+        place: req.body.place
     }).catch(err => {
         res.send(err);
     });
-    res.send(result);
+    res.send("新增成功");
+
+});
+
+router.get('/', async function(req, res, next) {
+  if(req.query.email != null){
+    let result = await goodsFindByOwner({
+      "owner": req.query.email
+    }).catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
+  else{
+    let result = await goodsFindByOwner().catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
 
 });
 
