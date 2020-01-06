@@ -58,15 +58,21 @@ router.post('/login', async function(req, res, next) {
       msg: err
     });  
   });
-  //console.log(result);
-  let token = jwt.sign({ email: req.body.email ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
-  res.cookie('access_token', token);
-  res.json({
-    msg: "登入成功",
-    jwt: token,
-    status: true
-  });
-
+  console.log(result);
+  if(result != undefined){
+    let token = jwt.sign({ email: result.email, name: result.name ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
+    res.cookie('access_token', token);
+    res.json({
+      msg: "登入成功",
+      jwt: token,
+      status: true
+    });
+  } else{
+    res.json({
+      status: false,
+      msg: "登入失敗"
+    });  
+  }
 });
 
 router.use(async function(req, res, next){

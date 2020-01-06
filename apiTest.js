@@ -38,6 +38,16 @@ const frontEndUser = async() => {
             jwt = (res.header["set-cookie"]);
           })
       });
+      it('get category', async function(){
+        await request
+          .get('/goods/classify')
+          .set('Cookie', jwt)
+          .expect(200)
+          .then(async function(res){
+            console.log(res.body)
+            await res.body.msg.length.should.not.equal(0);
+          })
+      });
     })
 }
 frontEndUser()

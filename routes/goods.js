@@ -5,6 +5,36 @@ const jwt = require('jsonwebtoken');
 var {goodsInsert, goodsFindOne, goodsDetail} = require('../models/m_goods');
 var {classFind} = require('../models/m_classify');
 
+router.get('/', async function(req, res, next) {
+  if(req.query.email != null){
+    let result = await goodsFindByOwner({
+      "owner": req.query.email
+    }).catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
+  else{
+    let result = await goodsFindByOwner().catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
+
+});
+
+router.get('/classify', async function(req, res, next) {
+  let result = await classFind().catch(err => {
+    res.json(err);
+  });
+  console.log(result);
+  res.json(result);
+ 
+
+});
+
 
 router.use('/', async function(req, res, next){
     let token = req.cookies.access_token
@@ -44,35 +74,6 @@ router.post('/', async function(req, res, next) {
 
 });
 
-router.get('/', async function(req, res, next) {
-  if(req.query.email != null){
-    let result = await goodsFindByOwner({
-      "owner": req.query.email
-    }).catch(err => {
-        res.json(err);
-    });
-    console.log(result);
-    res.json(result);
-  }
-  else{
-    let result = await goodsFindByOwner().catch(err => {
-        res.json(err);
-    });
-    console.log(result);
-    res.json(result);
-  }
-
-});
-
-router.get('/classify', async function(req, res, next) {
-  let result = await classFind().catch(err => {
-    res.json(err);
-  });
-  console.log(result);
-  res.json(result);
- 
-
-});
 
 router.post('/test', async function(req, res, next) {
   console.log(55555);

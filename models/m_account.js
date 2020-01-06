@@ -32,10 +32,10 @@ accountFindOne = async function(data) {
                 reject(err);
             }
             else if(rsp == null){
-                resolve(false);
+                reject(false);
             }
             else{
-                resolve(true);
+                resolve(rsp);
             }
         })
     })
