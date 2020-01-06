@@ -1,3 +1,83 @@
+<script type="text/javascript">
+    var jwt = "";
+    function register(){
+
+        var email = $("input[name='email']").val();
+        var name = $("input[name='name']").val();
+        var password= $("input[name='password']").val();
+        var address_nation =  $("input[name='address_nation']").val();
+        var address_city = $("input[name='address_city']").val();
+        var address_dist = $("input[name='address_dist']").val();
+        var address_street = $("input[name='address_street']").val();
+        var address_section = $("input[name='address_section']").val();
+        var address_other = $("input[name='address_other']").val();
+
+        console.log(email,name,password,address_nation,address_city,address_dist,address_street,address_section,address_other)
+
+        $.ajax({
+            type: 'POST',
+            url: "/users/register",
+            data: {
+                email:email,
+                name:name,
+                password:password,
+                address_nation:address_nation,
+                address_city:address_city,
+                address_dist:address_dist,
+                address_street:address_street,
+                address_section:address_section,
+                address_other:address_other
+            },
+            success:function(msg){
+                console.log(msg);
+                // var msg = jQuery.parseJSON(messanger);
+                alert(msg.msg) ;
+            },
+            error:function(errors){
+                console.log(errors);
+            }
+        })
+    }
+    function login(){
+
+        var email = $("input[name='email']").val();
+        var password= $("input[name='password']").val();
+        console.log(email,password)
+        $.ajax({
+            type: 'POST',
+            url: "/users/login",
+            data: {
+                email:email,
+                password:password
+            },
+            success:function(msg){
+                console.log(msg);
+                alert(msg.jwt) ;
+                token = msg.jwt;
+            },
+            error:function(errors){
+                console.log(errors);
+            }
+        })
+    }
+    function getMenu(){
+        var url = "http://localhost:8080/nbmweb/jwt/getMenu";
+        console.log("url-->"+url);
+        console.log("token-->"+token);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data:"token="+token,
+            success:function(msg){
+                console.log(msg);
+            },
+            error:function(errors){
+                console.log(errors);
+            }
+        })
+    }
+</script>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
