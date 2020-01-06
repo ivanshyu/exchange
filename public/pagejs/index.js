@@ -1,6 +1,5 @@
 let category = ['鞋子', '衣服', '類別三','類別四', '其他'];
 let category_image = ['item02.jpg','item01.jpg','item03.jpg','pic01.jpg','pic02.jpg']
-let item_number = [35894,2231,1128,3,10]
 let ribbon = ['hot','new','none','none','none'];
 var row = '';
 
@@ -29,7 +28,7 @@ for(let n=0;n<category.length/3;n++){
             row += '<div class="ribbon bg-success text-lg">New!</div></div>'
         }
 
-    row += '<h5>'+category[r_i]+'</h5><br>'+item_number[r_i]+'件物品'+'</div></div>'
+    row += '<h5>'+category[r_i]+'</h5></div></div>'
     }
     row += '</div>';
 }
