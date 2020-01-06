@@ -59,7 +59,8 @@ router.post('/login', async function(req, res, next) {
   let token = jwt.sign({ email: req.body.email ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
   res.cookie('access_token', token);
   res.json({
-    msg: result,
+    msg: "登入成功",
+    jwt: token,
     status: true
   });
 
