@@ -9,6 +9,12 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/register', async function(req, res, next) {
+  if(req.body.email == undefined || req.body.name == undefined ||req.body.password == undefined){
+    res.json({
+      status: false,
+      msg: "帳號密碼錯誤"
+    });
+  }
   let result = await accountInsert({
     email: req.body.email,
     name: req.body.name,
@@ -22,22 +28,41 @@ router.post('/register', async function(req, res, next) {
       address_other: req.body.address_other
     }
   }).catch(err =>{
-    res.send(err);
+    res.json({
+      status: false,
+      msg: err
+    });
   });
-  res.send(result);
+  res.json({
+    status: true,
+    msg: result
+  });
 });
 
 router.post('/login', async function(req, res, next) {
+  if(req.body.email == undefined || req.body.password == undefined){
+    res.json({
+      status: false,
+      msg: "帳號密碼錯誤"
+    });
+  }
   let result = await accountFindOne({
     email: req.body.email,
     password: req.body.password,
   }).catch(err =>{
-    res.send(err);
+    res.json({
+      status: false,
+      msg: err
+    });  
   });
   //console.log(result);
   let token = jwt.sign({ email: req.body.email ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
   res.cookie('access_token', token);
-  res.send(result);
+  res.json({
+    msg: "登入成功",
+    jwt: token,
+    status: true
+  });
 
 });
 

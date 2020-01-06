@@ -34,7 +34,8 @@ router.post('/', async function(req, res, next) {
         class: req.body.class,
         description: req.body.description,
         owner: req.decoded.email,
-        place: req.body.place
+        place: req.body.place,
+        image: req.body.path
     }).catch(err => {
         res.send(err);
     });
@@ -43,6 +44,26 @@ router.post('/', async function(req, res, next) {
 });
 
 router.get('/', async function(req, res, next) {
+  if(req.query.email != null){
+    let result = await goodsFindByOwner({
+      "owner": req.query.email
+    }).catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
+  else{
+    let result = await goodsFindByOwner().catch(err => {
+        res.json(err);
+    });
+    console.log(result);
+    res.json(result);
+  }
+
+});
+
+router.get('/classify', async function(req, res, next) {
   if(req.query.email != null){
     let result = await goodsFindByOwner({
       "owner": req.query.email
