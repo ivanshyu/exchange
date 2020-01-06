@@ -67,7 +67,6 @@ router.get('/advancedsearch', function(req, res, next) {
 });
 
 
-advancedsearch
 
 
 
