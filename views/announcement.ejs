@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,208 +17,146 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-boxed">
-<!-- Site wrapper -->
-<div class="wrapper">
+    <!-- Site wrapper -->
+    <div class="wrapper">
 
-    <% include subsection/nav.ejs %>
+        <% include subsection/nav.ejs %>
 
-    <% include subsection/aside.ejs %>
+        <% include subsection/aside.ejs %>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>公告</h1>
-                    </div>
-
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12"><div class="card">
-              <div class="card-header border-transparent">
-                <h3 class="card-title">最新消息</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
-                    <thead>
-                    <tr>
-                      <th>編號</th>
-                      <th>主題</th>
-                      <th>類別</th>
-                      <th>時間</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">001</a></td>
-                      <td>政大二手交換站 正式上線囉～</td>
-                      <td><span class="badge badge-success">系統公告</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">2020-01-05</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">002</a></td>
-                      <td>常見問題 緩慢更新中</td>
-                      <td><span class="badge badge-warning">一般公告</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">2020-01-05</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">003</a></td>
-                      <td>二手交換常見注意事項</td>
-                      <td><span class="badge badge-warning">一般公告</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">2020-01-05</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">004</a></td>
-                      <td>慶祝平台上線 交換免手續費</td>
-                      <td><span class="badge badge-info">活動公告</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">2020-01-05</div>
-                      </td>
-                    </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.table-responsive -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                  <!--<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Post</a>-->
-                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Post</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">你可能有興趣的物品</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div style="text-align:center"><img src="../../dist/img/prod-1.jpg" width="60%"></div>
-                                            <div class="ribbon-wrapper">
-                                                <div class="ribbon bg-primary">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Default <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-lg">
-                                                <div class="ribbon bg-info">
-                                                    Ribbon Large
-                                                </div>
-                                            </div>
-                                            Ribbon Large <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-secondary">
-                                                    Ribbon Extra Large
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-lg">
-                                                <div class="ribbon bg-success text-lg">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Large <br> with Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon.text-lg</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-warning text-lg">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br> with Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon.text-lg</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-danger text-xl">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br> with Extra Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon.text-xl</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>公告</h1>
                         </div>
-                        <!-- /.card -->
+
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-transparent">
+                                    <h3 class="card-title">最新消息</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>編號</th>
+                                                    <th>主題</th>
+                                                    <th>類別</th>
+                                                    <th>時間</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="pages/examples/invoice.html">001</a></td>
+                                                    <td>政大二手交換站 正式上線囉～</td>
+                                                    <td><span class="badge badge-success">系統公告</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                            2020-01-05</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="pages/examples/invoice.html">002</a></td>
+                                                    <td>常見問題 緩慢更新中</td>
+                                                    <td><span class="badge badge-warning">一般公告</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">
+                                                            2020-01-05</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="pages/examples/invoice.html">003</a></td>
+                                                    <td>二手交換常見注意事項</td>
+                                                    <td><span class="badge badge-warning">一般公告</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">
+                                                            2020-01-05</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="pages/examples/invoice.html">004</a></td>
+                                                    <td>慶祝平台上線 交換免手續費</td>
+                                                    <td><span class="badge badge-info">活動公告</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#00c0ef" data-height="20">
+                                                            2020-01-05</div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer clearfix">
+                                    <!--<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Post</a>-->
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All
+                                        Post</a>
+                                </div>
+                                <!-- /.card-footer -->
+                            </div>
+
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">你可能有興趣的物品</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body" id='card_body'>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- /.content -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <% include subsection/footer.ejs %>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
-    <!-- /.content-wrapper -->
-    <% include subsection/footer.ejs %>
+    <!-- ./wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <script src="../pagejs/index.js"></script>
 </body>
+
 </html>
