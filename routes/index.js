@@ -2,76 +2,76 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index');
 });
 
-router.get('/commodity', function(req, res, next) {
+router.get('/commodity', function (req, res, next) {
   res.render('commodity');
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function (req, res, next) {
   res.render('login');
 });
 
-router.get('/register', function(req, res, next) {
+router.get('/register', function (req, res, next) {
   res.render('register');
 });
 
-router.get('/myfavourite', function(req, res, next) {
+router.get('/myfavourite', function (req, res, next) {
   res.render('myfavourite');
 });
 
-router.get('/myaccount', function(req, res, next) {
+router.get('/myaccount', function (req, res, next) {
   res.render('myaccount');
 });
 
-router.get('/orderinformation', function(req, res, next) {
+router.get('/orderinformation', function (req, res, next) {
   res.render('orderinformation');
 });
 
-router.get('/newitem', function(req, res, next) {
+router.get('/newitem', function (req, res, next) {
   res.render('newitem');
 });
 
-router.get('/managementitems', function(req, res, next) {
+router.get('/managementitems', function (req, res, next) {
   res.render('managementitems');
 });
 
-router.get('/wishlist', function(req, res, next) {
+router.get('/wishlist', function (req, res, next) {
   res.render('wishlist');
 });
 
-router.get('/newwishlist', function(req, res, next) {
+router.get('/newwishlist', function (req, res, next) {
   res.render('newwishlist');
 });
 
-router.get('/announcement', function(req, res, next) {
+router.get('/announcement', function (req, res, next) {
   res.render('announcement');
 });
 
-router.get('/guide', function(req, res, next) {
+router.get('/guide', function (req, res, next) {
   res.render('guide');
 });
 
-router.get('/commonproblem', function(req, res, next) {
+router.get('/commonproblem', function (req, res, next) {
   res.render('commonproblem');
 });
 
-router.get('/chatroom', function(req, res, next) {
+router.get('/chatroom', function (req, res, next) {
   res.render('chatroom');
 });
 
-router.get('/advancedsearch', function(req, res, next) {
+router.get('/advancedsearch', function (req, res, next) {
   res.render('advancedsearch');
 });
 
-router.get('/category/:page', function(req, res, next) {
-  res.render('category',{category:req.params.page});
+router.get('/category/:page', function (req, res, next) {
+  res.render('category', { category: req.params.page });
 });
 
-router.get('/commodity/:id', function(req, res, next) {
-  res.render('commodity',{commodity_id:req.params.id});
+router.get('/commodity/:id', function (req, res, next) {
+  res.render('commodity', { commodity_id: req.params.id });
 });
 
 

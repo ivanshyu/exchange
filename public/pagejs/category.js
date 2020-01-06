@@ -11,7 +11,7 @@ $.ajax({
         let item = [];
         let item_id = [];
         var item_number = 0;
-        for (let i = 0; i < msg.msg.length; i++) { 
+        for (let i = 0; i < msg.msg.length; i++) {
             if (msg.msg[i].class == category) {
                 item[item_number] = msg.msg[i].title;
                 item_id[item_number] = msg.msg[i]._id;
