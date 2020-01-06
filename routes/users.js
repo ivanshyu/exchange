@@ -64,6 +64,15 @@ router.use(async function(req, res, next){
 		});
 	}
 })
+router.get('/', async function(req, res, next) {
+  let result = await accountDetail({
+    email: req.query.email
+  }).catch(err => {
+      res.json(err);
+  });
+  console.log(result);
+  res.json(result);
+});
 
 router.post('/test', async function(req, res, next) {
   console.log(55555);

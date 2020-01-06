@@ -43,13 +43,13 @@ accountFindOne = async function(data) {
 accountDetail = async function(data) {
     console.log(data);
     return new Promise((resolve, reject) => {
-        client.db("db").collection("Account")
-        .findOne(data)
-        .exec(async(err, rsp) => {
+        client.db("db").collection("Account").findOne(data, async(err, rsp) => {
             if(err){
+                console.log("err")
                 reject(err);
             }
             else{
+                console.log("err")
                 resolve(rsp);
             }
         });

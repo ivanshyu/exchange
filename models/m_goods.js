@@ -33,6 +33,21 @@ goodsFindOne = async function(data) {
             }
         })
     })
+};
+goodsFindByOwner = async function(data) {
+    return new Promise((resolve, reject) => {
+        client.db("db").collection("Goods").find(data).toArray(async(err, rsp) => {
+            if (err) {
+                reject(err);
+            }
+            else if(rsp == null){
+                resolve({"msg": false});
+            }
+            else{
+                resolve({"msg": rsp});
+            }
+        })
+    })
 }
 goodsDetail = async function(data) {
     console.log(data);
