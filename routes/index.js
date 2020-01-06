@@ -66,6 +66,10 @@ router.get('/advancedsearch', function(req, res, next) {
   res.render('advancedsearch');
 });
 
+router.get('/category', function(req, res, next) {
+  res.render('category');
+});
+
 
 
 
