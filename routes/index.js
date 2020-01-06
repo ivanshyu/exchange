@@ -70,5 +70,9 @@ router.get('/category/:page', function(req, res, next) {
   res.render('category',{category:req.params.page});
 });
 
+router.get('/commodity/:id', function(req, res, next) {
+  res.render('commodity',{commodity_id:req.params.id});
+});
+
 
 module.exports = router;
