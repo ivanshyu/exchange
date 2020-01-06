@@ -32,6 +32,9 @@
                 console.log(msg);
                 // var msg = jQuery.parseJSON(messanger);
                 alert(msg.msg) ;
+                setTimeout(function() {
+                    window.location.href = "/";
+                }, 1000);
             },
             error:function(errors){
                 console.log(errors);
@@ -54,6 +57,12 @@
                 console.log(msg);
                 alert(msg.jwt) ;
                 token = msg.jwt;
+
+                setTimeout(function() {
+                    window.location.href = "/";
+                }, 1000);
+
+
             },
             error:function(errors){
                 console.log(errors);
