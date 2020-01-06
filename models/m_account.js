@@ -5,24 +5,25 @@ const uri = "mongodb+srv://root:web@cluster0-xvsvf.mongodb.net/test?retryWrites=
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 client.connect();
-console.log("connected");
 
 accountInsert = async function(data) {
     return new Promise(async(resolve, reject) => {
         let result = await accountFindOne({email: data.email}).catch(err => {
-            reject(err);
+            client.db("db").collection("Account").insertOne((data), async(err, rsp) => {
+                if(err){
+                    reject(err);
+                }
+                else{
+                    console.log("新增成功")
+                    resolve(rsp);
+                }
+            });   
         });
         if(result == true){
-            resolve("此帳號已被註冊囉！");
+            console.log("has been registered")
+            reject("此帳號已被註冊囉！");
         }
-        client.db("db").collection("Account").insertOne((data), async(err, rsp) => {
-            if(err){
-                reject(err);
-            }
-            else{
-                resolve("註冊成功");
-            }
-        });       
+            
     });
 };
 accountFindOne = async function(data) {

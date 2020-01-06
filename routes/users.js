@@ -31,15 +31,18 @@ router.post('/register', async function(req, res, next) {
       address_other: req.body.address_other
     }
   }).catch(err =>{
+    console.log("error here");
     res.json({
       status: false,
       msg: err
     });
   });
-  res.json({
-    status: true,
-    msg: result
-  });
+  if(result != undefined){
+    res.json({
+      status: true,
+      msg: result
+    });
+  }
 });
 
 router.post('/login', async function(req, res, next) {
