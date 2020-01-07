@@ -8,7 +8,7 @@ $.ajax({
         var commodity_name = "";
         var info = "";
         var category = "";
-        var image = '<img class="product-image" alt="Product Image" src="/images/';
+        var image = '<img class="product-image" alt="Product Image" src="/';
 
         for (let i = 0; i < msg.msg.length; i++) {
             console.log(msg.msg[i]._id);
@@ -25,9 +25,6 @@ $.ajax({
         $('#info').html(info);
         $('#commodity_name1').html(commodity_name);
         $('#commodity_name2').html(commodity_name);
-        if (image == undefined) {
-            image = '<img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">';
-        }
         $('#main_image').html(image);
     },
     error: function (errors) {

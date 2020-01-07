@@ -28,7 +28,7 @@ $.ajax({
                     break;
                 }
                 row += '<div class="col-sm-4" id=' + category[r_i] + ' onclick="location.href=\'category/' + category[r_i] + '\'">'
-                row += '<div class="position-relative p-3 bg-gray" style="height: 180px">'
+                row += '<div class="card" style="height: 180px">'
                 row += '<div style="text-align:center"><img src="/' + category_image[r_i] + '" width="50%"></div>'
 
                 if (ribbon[r_i] == 'hot') {
