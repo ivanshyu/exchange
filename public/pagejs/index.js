@@ -29,7 +29,7 @@ $.ajax({
                 row += '<div class="position-relative p-3 bg-gray" style="height: 180px">'
                 row += '<div style="text-align:center"><img src="/images/' + category_image[r_i] + '" width="50%"></div>'
 
-                if (ribbon[n + i] == 'hot') {
+                if (ribbon[r_i] == 'hot') {
                     row += '<div class="ribbon-wrapper ribbon-lg">'
                     row += '<div class="ribbon bg-danger text-lg">Hot~</div></div>'
                 }
