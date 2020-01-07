@@ -3,7 +3,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 
 
-var { searchWallet, searchAddress, getBalance, deployWallet, setUserIdToBank, transfer, buyCoupon, signTx, sendSignedTransaction
+var { searchWallet, searchAddress, getBalance, deployWallet, setUserIdToBank, transfer, buyCoupon, signTx, sendSignedTransaction, soldToSettlement, getCouponsPoolFromSettlement, getCouponsPoolDetailFromSettlement
 } = require('../contract/blockchain');
 
 router.use('/', async function(req, res, next){
@@ -63,9 +63,30 @@ router.post('/transaction', async function(req, res, next){
     }
 })
 
+router.get('/get_coupon_pool', async function(req, res, next){
+    let result = await getCouponsPoolFromSettlement();
+    if(result !== undefined){
+        console.log(result.id)
+        res.json({
+            msg: result,
+            status: true
+        })
+    }
+})
+router.get('/get_coupon_pool_detail', async function(req, res, next){
+    let result = await getCouponsPoolDetailFromSettlement(req.query.coupon_id);
+    if(result !== undefined){
+        res.json({
+            msg: result,
+            status: true
+        })
+    }
+})
+
+
 router.post('/exchange_coupon', async function(req, res, next){
     //let points = await getBalance(req.decoded.account_id);
-    console.log(req.body.product_id)
+    console.log(req.body)
     let result = await buyCoupon(req.decoded.account_id, req.body.product_id, req.body.value, req.body.address, req.body.data).catch(err =>{
         res.json({
             msg: "error",
@@ -80,5 +101,34 @@ router.post('/exchange_coupon', async function(req, res, next){
         })
     }
 })
+
+
+router.post('/push_coupon_pool', async function(req, res, next){
+    //let points = await getBalance(req.decoded.account_id);
+    console.log(req.body.product_id)
+    let result = await soldToSettlement(
+        req.decoded.account_id, 
+        req.body.min, 
+        req.body.max, 
+        req.body.product_id, 
+        req.body.vendor, 
+        req.body.type, 
+        req.body.address, 
+        req.body.data
+    ).catch(err =>{
+        res.json({
+            msg: "error",
+            status: false
+        })
+    })
+    if(result !== undefined){
+        console.log(result)
+        res.json({
+            msg: result,
+            status: true
+        })
+    }
+})
+
 
 module.exports = router;

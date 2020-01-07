@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
+var ObjectId = require('mongodb').ObjectID;
 
-var {accountInsert, accountFindOne, accountDetail} = require('../models/m_account');
+var {accountInsert, accountFindOne, accountDetail, accountUpdateOne} = require('../models/m_account');
+var {goodsFindOne} = require('../models/m_goods');
 
-router.post('/', function(req, res, next) {
-  res.send("hi");
-});
 
 router.post('/register', async function(req, res, next) {
   console.log(req.body)
@@ -46,6 +45,7 @@ router.post('/register', async function(req, res, next) {
 });
 
 router.post('/login', async function(req, res, next) {
+  console.log("req.body:",req.body)
   if(req.body.email == undefined || req.body.password == undefined){
     res.json({
       status: false,
@@ -58,12 +58,12 @@ router.post('/login', async function(req, res, next) {
   }).catch(err =>{
     res.json({
       status: false,
-      msg: err
+      msg: "登入失敗"
     });  
   });
   console.log(result);
   if(result != undefined){
-    let token = jwt.sign({ email: result.email, name: result.name ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
+    let token = jwt.sign({ email: result.email, name: result.name ,exp: Math.floor(Date.now() / 1000) + (600000 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
     res.cookie('access_token', token);
     res.json({
       msg: "登入成功",
@@ -77,6 +77,34 @@ router.post('/login', async function(req, res, next) {
     });  
   }
 });
+
+router.post('/verify' ,async function(req, res, next){
+  let token = req.cookies.access_token
+  console.log(token);
+  if (typeof token != 'undefined') {
+    // Remove Bearer from string
+    jwt.verify(token, "ftP@jdnfkljdsbvdskjvbdkvn", (err, decoded) => {
+      if (err) {
+        res.json({
+          status: false,
+          msg: 'Token is not valid'
+        });
+      } else {
+        res.cookie('email', decoded.email);
+        res.cookie('name', decoded.name);
+        res.json({
+          status:true,
+          msg: "認證成功"
+        });
+      }
+    });
+  } else {
+    res.json({
+      status: false,
+      msg: 'Authorization 格式錯誤'
+    });
+  }
+})
 
 router.use(async function(req, res, next){
   let token = req.cookies.access_token
@@ -102,16 +130,113 @@ router.use(async function(req, res, next){
 	}
 })
 router.get('/', async function(req, res, next) {
-  let result = await accountDetail({
-    email: req.query.email
+  if(req.query.email == undefined){
+    let result = await accountDetail({
+      email: req.decoded.email
+    }).catch(err => {
+        res.json({
+          msg: err,
+          status: false
+        });
+    });
+    res.json({
+      status : true,
+      msg: result
+    });  
+  } else {
+    let result = await accountDetail({
+      email: req.query.email
+    }).catch(err => {
+      res.json({
+        msg: err,
+        status: false
+      });
+    });
+    res.json({
+      status : true,
+      msg: result
+    });
+  }
+  
+});
+
+router.post('/favorite_list', async function(req, res, next) {
+  let account = await accountDetail({
+    email: req.decoded.email
   }).catch(err => {
       res.json(err);
   });
-  console.log(result);
-  res.json(result);
+  if(account != undefined){
+    console.log(account);
+    let good = await goodsFindByOwner({
+      "_id": ObjectId(req.body.id)
+    }).catch(err =>{
+      res.json({
+        status: false,
+        msg: err
+      });  
+    });
+    if(good.msg[0] != undefined){
+      //console.log(good[0])
+      if(account.favorite_list == undefined){
+        let result = await accountUpdateOne(account, 'favorite_list', good.msg).catch(err =>{
+          res.json({
+            status: false,
+            msg: err
+          })
+        });
+        if(result != undefined){
+          res.json({
+            status: true,
+            msg: result.result.nModified
+          })
+        }
+      }
+      else{
+        list = Array.from(account.favorite_list).concat(good.msg);
+        console.log(list)
+        let result = await accountUpdateOne(account, 'favorite_list',  list).catch(err =>{
+          res.json({
+            status: false,
+            msg: err
+          })
+        });
+        if(result != undefined){
+          res.json({
+            status: true,
+            msg: result.result.nModified
+          })
+        }
+      }
+    }else{
+      res.json({
+        status: false
+      })
+    }
+  }
 });
 
-router.post('/test', async function(req, res, next) {
-  console.log(55555);
-})
+router.get('/favorite_list', async function(req, res, next) {
+  let result = await accountDetail({
+    email: req.decoded.email
+  }).catch(err => {
+      res.json(err);
+  });
+  if(result != undefined){
+    console.log(result.favorite_list);
+    if(result.favorite_list != undefined){
+      res.json({
+        favorite_list: result.favorite_list,
+        status: true
+      })
+    }
+    else{
+      res.json({
+        favorite_list: "您目前沒有收藏的物品",
+        status: true
+      })
+    }
+  }
+});
+
 module.exports = router;

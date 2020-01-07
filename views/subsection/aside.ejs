@@ -1,90 +1,278 @@
 <script type="text/javascript">
-    var jwt = "";
-    function register(){
 
+    $.ajax({
+        type: 'POST',
+        url: "/users/verify",
+        data: {},
+        success: function (msg) {
+            console.log("jwt",msg.status);
+            if (msg.status === true) {
+                var logindiv = `
+            <div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info" >
+                <a href="/myaccount" class="d-block">${getCookie("name")}</a>
+            <span class="badge badge-info right"><a href="#" class="d-block" onclick="logout()">登出</a></span>
+            </div>`
+                $("#logindiv").html(logindiv)
+            } else {
+                $("#logindiv").html(`
+        <div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info" >
+                <a href="/login" class="d-block">登入or註冊會員</a>
+            </div>`)
+            }
+
+        },
+        error: function (errors) {
+            console.log(errors);
+        }
+    })
+
+    function register() {
         var email = $("input[name='email']").val();
         var name = $("input[name='name']").val();
-        var password= $("input[name='password']").val();
-        var address_nation =  $("input[name='address_nation']").val();
+        var password = $("input[name='password']").val();
+        var address_nation = $("input[name='address_nation']").val();
         var address_city = $("input[name='address_city']").val();
         var address_dist = $("input[name='address_dist']").val();
         var address_street = $("input[name='address_street']").val();
         var address_section = $("input[name='address_section']").val();
         var address_other = $("input[name='address_other']").val();
 
-        console.log(email,name,password,address_nation,address_city,address_dist,address_street,address_section,address_other)
+        console.log(email, name, password, address_nation, address_city, address_dist, address_street, address_section, address_other)
 
         $.ajax({
             type: 'POST',
             url: "/users/register",
             data: {
-                email:email,
-                name:name,
-                password:password,
-                address_nation:address_nation,
-                address_city:address_city,
-                address_dist:address_dist,
-                address_street:address_street,
-                address_section:address_section,
-                address_other:address_other
+                email: email,
+                name: name,
+                password: password,
+                address_nation: address_nation,
+                address_city: address_city,
+                address_dist: address_dist,
+                address_street: address_street,
+                address_section: address_section,
+                address_other: address_other
             },
-            success:function(msg){
+            success: function (msg) {
                 console.log(msg);
-                // var msg = jQuery.parseJSON(messanger);
-                alert(msg.msg) ;
-                setTimeout(function() {
-                    window.location.href = "/";
-                }, 1000);
+
+
+                if (msg.status === true) {
+                    // var msg = jQuery.parseJSON(messanger);
+                    swal("註冊成功", "You clicked the button!", "success")
+                        .then((value) => {
+                            window.location.href = "/";
+                        });
+                } else {
+                    console.log("失敗", msg)
+                    swal(msg.msg, "You clicked the button!", "warning")
+                }
+
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
+                swal("註冊失敗了", "You clicked the button!", "warning")
             }
         })
     }
-    function login(){
+
+    function login() {
 
         var email = $("input[name='email']").val();
-        var password= $("input[name='password']").val();
-        console.log(email,password)
+        var password = $("input[name='password']").val();
+        console.log(email, password)
         $.ajax({
             type: 'POST',
             url: "/users/login",
             data: {
-                email:email,
-                password:password
+                email: email,
+                password: password
             },
-            success:function(msg){
+            success: function (msg) {
                 console.log(msg);
-                alert(msg.jwt) ;
-                token = msg.jwt;
-
-                setTimeout(function() {
-                    window.location.href = "/";
-                }, 1000);
-
+                if(msg.status === true){
+                swal(msg.msg, "You clicked the button!", "success")
+                    .then((value) => {
+                        window.location.href = "/";
+                    });
+                }else{
+                    swal(msg.msg.toString(), "You clicked the button!", "warning")
+                }
 
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
             }
         })
     }
-    function getMenu(){
-        var url = "http://localhost:8080/nbmweb/jwt/getMenu";
-        console.log("url-->"+url);
-        console.log("token-->"+token);
+
+    function logout() {
+        swal("登出成功", "You clicked the button!", "success")
+            .then((value) => {
+                window.location.href = "/";
+            });
+        clearAllCookie()
+
+
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return decodeURIComponent(c.substring(name.length, c.length));
+        }
+        return "";
+    }
+
+    function clearAllCookie() {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
+
+
+    function uploaditem() {
+
+        var inputName = $("#inputName").val();
+        var inputCategory = $("#inputCategory").val();
+        var inputTime = $("#inputTime").val();
+        var inputDescription = $("#inputDescription").val();
+        var inputLocal = $("#inputLocal").val();
+        var inputImg = $("#progressbarTWInput").val();
+
+        var formData = new FormData();
+        formData.append("image",$('#progressbarTWInput')[0].files[0]);
+
+        console.log(inputName, inputCategory, inputTime, inputDescription, inputLocal)
+
         $.ajax({
             type: 'POST',
-            url: url,
-            data:"token="+token,
-            success:function(msg){
+            url: "/upload",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (msg) {
                 console.log(msg);
+                console.log(msg.filePath.path);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/goods",
+                    data: {
+                        title: inputName,
+                        class: inputCategory,
+                        description: inputDescription,
+                        email: getCookie("email"),
+                        time:inputTime,
+                        place: inputLocal,
+                        path: msg.filePath.path.slice(7,)
+                    },
+                    success: function (msg) {
+                        console.log(msg);
+
+                        if (msg.status === "success") {
+                            // var msg = jQuery.parseJSON(messanger);
+                            swal(msg.msg, "You clicked the button!", "success")
+                                .then((value) => {
+                                    window.location.href = "/managementitems";
+                                });
+                        } else {
+                            console.log(msg.msg)
+                            swal(msg.msg, "You clicked the button!", "warning")
+                        }
+
+                    },
+                    error: function (errors) {
+                        console.log(errors);
+                        swal("新增商品失敗了", "You clicked the button!", "warning")
+                    }
+                })
+
+
+
+
+
+
+
+
+
+
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
+                swal("圖片上傳失敗", "You clicked the button!", "warning")
             }
         })
     }
+
+
+
+
+    window.addEventListener('load', function () {
+        console.log(window.location.href.indexOf("category"))
+
+        if(window.location.href.indexOf("category")!==-1){
+            $("#navcategory").addClass("active");
+        }
+        else if(window.location.href.indexOf("myfavourite")!==-1) {
+            $("#navmyfavourite").addClass("active");
+        }
+        else if(window.location.href.indexOf("myaccount")!==-1) {
+            $("#navmyaccount").addClass("active");
+        }
+        else if(window.location.href.indexOf("orderinformation")!==-1) {
+            $("#navmyaccount").addClass("active");
+        }
+        else if(window.location.href.indexOf("managementitems")!==-1) {
+            $("#navmanagementitems").addClass("active");
+        }
+        else if(window.location.href.indexOf("newitem")!==-1) {
+            $("#navmanagementitems").addClass("active");
+        }
+        else if(window.location.href.indexOf("wishlist")!==-1) {
+            $("#navwishlist").addClass("active");
+        }else if(window.location.href.indexOf("newwishlist")!==-1) {
+            $("#navwishlist").addClass("active");
+        }else if(window.location.href.indexOf("advancedsearch")!==-1) {
+            $("#navadvancedsearch").addClass("active");
+        }
+        else if(window.location.href.indexOf("announcement")!==-1) {
+            $("#navannouncement").addClass("active");
+        }
+        else if(window.location.href.indexOf("guide")!==-1) {
+            $("#navguide").addClass("active");
+        }
+        else if(window.location.href.indexOf("commonproblem")!==-1) {
+            $("#navcommonproblem").addClass("active");
+        }
+        else if(window.location.href.indexOf("chatroom")!==-1) {
+            $("#navchatroom").addClass("active");
+        }
+
+
+    })
+
+
+
+
+
 </script>
 
 <!-- Main Sidebar Container -->
@@ -101,12 +289,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex" id="logindiv">
             <div class="image">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="/login" class="d-block">登入 ＆＆ 我是誰</a>
+                <a href="/login" class="d-block"></a>
             </div>
         </div>
 
@@ -116,7 +304,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="" class="nav-link " id="navcategory">
                         <i class="nav-icon fas fa-exchange-alt"></i>
                         <p>
                             交換類別
@@ -125,7 +313,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/category/男鞋" class="nav-link">
+                            <a href="/category/男鞋" class="nav-link" >
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>男鞋</p>
                             </a>
@@ -152,7 +340,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/myfavourite" class="nav-link">
+                    <a href="/myfavourite" class="nav-link" id="navmyfavourite">
                         <i class="nav-icon fas fa-heart"></i>
                         <p>我的最愛</p>
                     </a>
@@ -160,7 +348,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navmyaccount">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>
                             會員
@@ -168,12 +356,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/register" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>註冊會員</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="/myaccount" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -192,7 +374,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navmanagementitems">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>
                             我的交換物品
@@ -216,7 +398,7 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navwishlist">
                         <i class="nav-icon fas fa-praying-hands"></i>
                         <p>
                             我的許願物品
@@ -241,86 +423,35 @@
 
 
                 <li class="nav-item">
-                    <a href="/advancedsearch" class="nav-link">
+                    <a href="/advancedsearch" class="nav-link"id="navadvancedsearch">
                         <i class="nav-icon fas fa-search-plus"></i>
                         <p>進階搜尋</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/announcement" class="nav-link">
+                    <a href="/announcement" class="nav-link"id="navannouncement">
                         <i class="nav-icon fas fa-bullhorn"></i>
                         <p>公告</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/guide" class="nav-link">
+                    <a href="/guide" class="nav-link" id="navguide">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>教學</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/commonproblem" class="nav-link">
+                    <a href="/commonproblem" class="nav-link" id="navcommonproblem">
                         <i class="nav-icon fas fa-question-circle"></i>
                         <p>常見問題</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/chatroom" class="nav-link">
+                    <a href="/chatroom" class="nav-link" id="navchatroom">
                         <i class="nav-icon far fa-comments"></i>
                         <p>聊天室</p>
                     </a>
                 </li>
-
-
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Layout Options
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../layout/top-nav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/boxed.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Boxed</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-sidebar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Sidebar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-topnav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Navbar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-footer.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Footer</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Collapsed Sidebar</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
 
 
             </ul>
