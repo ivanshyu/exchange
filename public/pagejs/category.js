@@ -50,7 +50,7 @@ $.ajax({
                     row += '<div class="ribbon bg-success text-lg">New!</div></div>'
                 }
 
-                row += '<h5>' + item[r_i] + '</h5>' + '</div></div>'
+                row += `<div class="small-box bg-primary"><a class="small-box-footer"> ${item[r_i]} <i class="fas fa-arrow-circle-right"></i></a></div></div></div>`
             }
             row += '</div>';
         }
