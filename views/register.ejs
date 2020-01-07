@@ -47,7 +47,7 @@
 
                                 <form action="/users/register" method="post" >
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Full name" name="name">
+                                        <input type="text" class="form-control" placeholder="全名" name="name">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-user"></span>
@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="password" class="form-control" placeholder="Password" name="password">
+                                        <input type="password" class="form-control" placeholder="密碼" name="password">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-lock"></span>
@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="password" class="form-control" placeholder="Retype password">
+                                        <input type="password" class="form-control" placeholder="重複 密碼">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-lock"></span>
@@ -80,7 +80,15 @@
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_nation" name="address_nation">
+                                        <input type="text" class="form-control" placeholder="性別" name="address_nation">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-venus-mars"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="居住城市" name="address_city">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-map-marker-alt"></span>
@@ -88,42 +96,34 @@
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_city" name="address_city">
+                                        <input type="text" class="form-control" placeholder="出生年月日" name="address_dist">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
-                                                <span class="fas fa-map-marker-alt"></span>
+                                                <span class="fas fa-birthday-cake"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_dist" name="address_dist">
+                                        <input type="text" class="form-control" placeholder="興趣" name="address_street">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
-                                                <span class="fas fa-map-marker-alt"></span>
+                                                <span class="fas fa-line-columns"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_street" name="address_street">
+                                        <input type="text" class="form-control" placeholder="手機號碼" name="address_section">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
-                                                <span class="fas fa-map-marker-alt"></span>
+                                                <span class="fas fa-mobile"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_section" name="address_section">
+                                        <input type="text" class="form-control" placeholder="政大系級" name="address_other">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
-                                                <span class="fas fa-map-marker-alt"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="address_other" name="address_other">
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fas fa-map-marker-alt"></span>
+                                                <span class="fas fa-graduation-cap"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -134,13 +134,14 @@
                                             <div class="icheck-primary">
                                                 <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                                                 <label for="agreeTerms">
-                                                    I agree to the <a href="#">terms</a>
+                                                    我同意 <a href="#">條款</a>
                                                 </label>
                                             </div>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-4">
-                                            <div type="submit" class="btn btn-primary btn-block" onclick="register()" >註冊</div>
+                                            <a href="#" class="btn btn-block btn-primary" onclick="register()" >註冊
+                                            </a>
                                         </div>
                                         <!-- /.col -->
                                     </div>
@@ -150,11 +151,11 @@
                                     <p>- OR -</p>
                                     <a href="#" class="btn btn-block btn-primary">
                                         <i class="fab fa-facebook mr-2"></i>
-                                        Sign up using Facebook
+                                        透過Facebook登入
                                     </a>
                                     <a href="#" class="btn btn-block btn-danger">
                                         <i class="fab fa-google-plus mr-2"></i>
-                                        Sign up using Google+
+                                        透過Google+登入
                                     </a>
                                 </div>
 

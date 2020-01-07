@@ -24,112 +24,133 @@
 
     <% include subsection/aside.ejs %>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>交換類別</h1>
+                        <h1>註冊</h1>
                     </div>
 
                 </div>
             </div><!-- /.container-fluid -->
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">熱門</h3>
+                    <div class="col-12 ">
+                        <!-- Default box -->
+                        <div class="card">
+                            <div class="card-body register-card-body">
+                                <p class="login-box-msg">我的帳號</p>
+
+                                <form action="/users/register" method="post" >
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="全名" name="name">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="email" class="form-control" placeholder="Email" name="email">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control" placeholder="密碼" name="password">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="性別" name="address_nation">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-venus-mars"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="居住城市" name="address_city">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-map-marker-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="出生年月日" name="address_dist">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-birthday-cake"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="興趣" name="address_street">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-line-columns"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="手機號碼" name="address_section">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-mobile"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="政大系級" name="address_other">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-graduation-cap"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="icheck-primary">
+
+
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-4">
+                                            <a href="#" class="btn btn-block btn-primary" onclick="register()" >註冊
+                                            </a>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </form>
+
+
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper">
-                                                <div class="ribbon bg-primary">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Default <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                                        </div>
-                                        <div class="small-box bg-success">
-                                            <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-lg">
-                                                <div class="ribbon bg-info">
-                                                    Ribbon Large
-                                                </div>
-                                            </div>
-                                            Ribbon Large <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-secondary">
-                                                    Ribbon Extra Large
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-lg">
-                                                <div class="ribbon bg-success text-lg">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Large <br> with Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-lg .ribbon.text-lg</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-warning text-lg">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br> with Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon.text-lg</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="position-relative p-3 bg-gray" style="height: 180px">
-                                            <div class="ribbon-wrapper ribbon-xl">
-                                                <div class="ribbon bg-danger text-xl">
-                                                    Ribbon
-                                                </div>
-                                            </div>
-                                            Ribbon Extra Large <br> with Extra Large Text <br>
-                                            <small>.ribbon-wrapper.ribbon-xl .ribbon.text-xl</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                            <!-- /.form-box -->
+                        </div><!-- /.card -->
+
                     </div>
                 </div>
             </div>
         </section>
-        <!-- /.content -->
+
+
+
+
+
     </div>
     <!-- /.content-wrapper -->
     <% include subsection/footer.ejs %>
@@ -150,5 +171,7 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../../pagejs/myaccount.js"></script>
 </body>
 </html>
+
