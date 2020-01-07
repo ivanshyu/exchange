@@ -9,7 +9,7 @@ $.ajax({
         var info = "";
         var category = "";
         var image = '<img class="product-image" alt="Product Image" src="/images/';
-        
+
         for (let i = 0; i < msg.msg.length; i++) {
             console.log(msg.msg[i]._id);
             if (commodity_id == msg.msg[i]._id) {
@@ -25,7 +25,7 @@ $.ajax({
         $('#info').html(info);
         $('#commodity_name1').html(commodity_name);
         $('#commodity_name2').html(commodity_name);
-        if(image == undefined){
+        if (image == undefined) {
             image = '<img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">';
         }
         $('#main_image').html(image);
