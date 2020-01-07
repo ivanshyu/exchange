@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
+var ObjectId = require('mongodb').ObjectID;
 
-var {goodsInsert, goodsFindOne, goodsDetail} = require('../models/m_goods');
+var {goodsInsert, goodsFindOne, goodsDetail, goodsFindByOwner} = require('../models/m_goods');
 var {classFind} = require('../models/m_classify');
 
 router.get('/', async function(req, res, next) {
@@ -15,6 +16,15 @@ router.get('/', async function(req, res, next) {
     console.log(result);
     res.json(result);
   }
+  else if(req.query.id != null){
+    let result = await goodsFindByOwner({
+      "_id": ObjectId(req.query.id)
+    }).catch(err => {
+        res.json(err);
+    });
+    console.log(result.msg[0]);
+    res.json(result);
+  }
   else{
     let result = await goodsFindByOwner().catch(err => {
         res.json(err);
@@ -25,13 +35,12 @@ router.get('/', async function(req, res, next) {
 
 });
 
+
 router.get('/classify', async function(req, res, next) {
   let result = await classFind().catch(err => {
     res.json(err);
   });
   res.json(result);
-  
- 
 
 });
 
@@ -61,7 +70,7 @@ router.use('/', async function(req, res, next){
   
 router.post('/', async function(req, res, next) {
     let result = await goodsInsert({
-        tilte: req.body.title,
+        title: req.body.title,
         class: req.body.class,
         description: req.body.description,
         owner: req.decoded.email,

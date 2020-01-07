@@ -41,6 +41,21 @@ accountFindOne = async function(data) {
         })
     })
 }
+accountUpdateOne = async function(target, column ,data) {
+    return new Promise((resolve, reject) => {
+        client.db("db").collection("Account")
+        .updateOne({ "_id": target._id},
+        {$set: {favorite_list: data}})
+        .then((obj) => {
+            console.log('Updated - ' + obj);
+            resolve(obj);
+        })
+        .catch((err) => {
+            reject(err);
+        })
+    })
+}
+
 accountDetail = async function(data) {
     console.log(data);
     return new Promise((resolve, reject) => {
@@ -86,4 +101,4 @@ Model.has = function(data, callback) {
     });
 };
 */
-module.exports = {accountInsert, accountFindOne, accountDetail};
+module.exports = {accountInsert, accountFindOne, accountDetail, accountUpdateOne};

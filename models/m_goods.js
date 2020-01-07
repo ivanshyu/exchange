@@ -26,10 +26,10 @@ goodsFindOne = async function(data) {
                 reject(err);
             }
             else if(rsp == null){
-                resolve(false);
+                reject(false);
             }
             else{
-                resolve(true);
+                resolve(rsp);
             }
         })
     })
@@ -95,4 +95,4 @@ Model.has = function(data, callback) {
     });
 };
 */
-module.exports = {goodsInsert, goodsFindOne, goodsDetail};
+module.exports = {goodsInsert, goodsFindOne, goodsDetail, goodsFindByOwner};
