@@ -49,7 +49,7 @@ var cpUpload = upload.fields([{ name: 'image', maxCount: 1 }])
 app.post('/upload', cpUpload, function (req, res, next) {
   console.log(req.files.image[0]);
   res.json({
-      filePath: req.files.image[0]
+      filePath: req.files.image[0].substring(7,)
   })
 });
 

@@ -14,7 +14,7 @@ $.ajax({
         for (let n = 0; n < category.length ; n++) {
             row += `<option>${category[n]}</option>\n`
         }
-           
+
 
         $('#inputCategory').html(row)
     },
