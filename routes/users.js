@@ -59,7 +59,7 @@ router.post('/login', async function(req, res, next) {
   }).catch(err =>{
     res.json({
       status: false,
-      msg: err
+      msg: "登入失敗"
     });  
   });
   console.log(result);

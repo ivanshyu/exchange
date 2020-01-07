@@ -97,10 +97,14 @@
             },
             success: function (msg) {
                 console.log(msg);
+                if(msg.status === true){
                 swal(msg.msg, "You clicked the button!", "success")
                     .then((value) => {
                         window.location.href = "/";
                     });
+                }else{
+                    swal(msg.msg.toString(), "You clicked the button!", "warning")
+                }
 
 
             },
@@ -150,18 +154,7 @@
         var inputCategory = $("#inputCategory").val();
         var inputTime = $("#inputTime").val();
         var inputDescription = $("#inputDescription").val();
-        var inputCategory = $("#inputCategory").val();
-        var inputCategory = $("#inputCategory").val();
-
-        var inputTime
-        var name = $("input[name='name']").val();
-        var password = $("input[name='password']").val();
-        var address_nation = $("input[name='address_nation']").val();
-        var address_city = $("input[name='address_city']").val();
-        var address_dist = $("input[name='address_dist']").val();
-        var address_street = $("input[name='address_street']").val();
-        var address_section = $("input[name='address_section']").val();
-        var address_other = $("input[name='address_other']").val();
+        var inputLocal = $("#inputLocal").val();
 
         console.log(email, name, password, address_nation, address_city, address_dist, address_street, address_section, address_other)
 
