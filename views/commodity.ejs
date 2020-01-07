@@ -19,11 +19,11 @@
 <body class="hold-transition sidebar-mini layout-boxed">
 <!-- Site wrapper -->
 <div class="wrapper">
-    
+
     <% include subsection/nav.ejs %>
 
     <% include subsection/aside.ejs %>
-    
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
@@ -31,7 +31,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 id=h1_title>物品: </h1>
-                        <div style="display:none" id=commodity_id><%=commodity_id%></div>
+                        <div style="display:none" id=commodity_id><%= commodity_id %></div>
                     </div>
 
                 </div>
@@ -39,83 +39,160 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
-
-            <!-- Default box -->
-            <div class="card card-solid">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-sm-6">
-                            <h3 class="d-inline-block d-sm-none" id="commodity_name1"></h3>
-                            <div class="col-12" id = "main_image">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-
-                            <hr>
-                            <div class="card-body">
-                                <strong ><i class="fas fa-book mr-1"></i> 商品名稱</strong>
-                                <br><br>
-                                <h3 class="text-muted" id="commodity_name2"></h3>
-
-                                <hr>
-
-                                <strong><i class="fas fa-list-alt mr-1"></i> 詳細資訊</strong>
-                                <br>
-
-                                <p class="text-muted" id="info1"></p>
-
-                                <hr>
-
-                                <strong><i class="fas fa-calendar-alt mr-1"></i> 入手時間</strong>
-                                <br>
-
-                                <p class="text-muted" id="infotime"></p>
-
-                                <hr>
-
-                                <strong><i class="fas fa-map-marker-alt mr-1"></i> 期望交換地點</strong>
-                                <br>
-
-                                <p class="text-muted" id="infoplace"></p>
-
-                                <hr>
-                            </div>
-
-
-
-
-                            <hr>
-                            
-                            <div class="mt-4">
-                                <div class="btn btn-default btn-lg btn-flat" onclick="onclickmylove()">
-                                    <i class="fas fa-heart fa-lg mr-2"></i>
-                                    Add to My favorite
-                                </div>
-                            </div>
-
-                            <div class="mt-4 product-share">
-                                <a href="#" class="text-gray">
-                                    <i class="fab fa-facebook-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fab fa-twitter-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fas fa-envelope-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fas fa-rss-square fa-2x"></i>
-                                </a>
-                            </div>
-
+        <!-- Default box -->
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3 class="d-inline-block d-sm-none" id="commodity_name1"></h3>
+                        <div class="col-12" id="main_image">
                         </div>
                     </div>
+                    <div class="col-12 col-sm-6">
 
+
+                        <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> 商品名稱</strong>
+                            <br><br>
+                            <h3 class="text-muted" id="commodity_name2"></h3>
+
+                            <hr>
+
+                            <strong><i class="fas fa-list-alt mr-1"></i> 詳細資訊</strong>
+                            <br>
+
+                            <p class="text-muted" id="info1"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-calendar-alt mr-1"></i> 入手時間</strong>
+                            <br>
+
+                            <p class="text-muted" id="infotime"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> 期望交換地點</strong>
+                            <br>
+
+                            <p class="text-muted" id="infoplace"></p>
+
+
+                        </div>
+
+                        <hr>
+
+                        <div class="mt-4">
+                            <div class="btn btn-default btn-lg btn-flat" onclick="onclickmylove()">
+                                <i class="fas fa-heart fa-lg mr-2"></i>
+                                Add to My favorite
+                            </div>
+                        </div>
+
+                        <div class="mt-4 product-share">
+                            <a href="#" class="text-gray">
+                                <i class="fab fa-facebook-square fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-gray">
+                                <i class="fab fa-twitter-square fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-gray">
+                                <i class="fas fa-envelope-square fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-gray">
+                                <i class="fas fa-rss-square fa-2x"></i>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
-                <!-- /.card-body -->
+
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <div id="messagebar">
+            <!--<div class="card card-solid">-->
+                <!--<div class="card-body">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-12 ">-->
+                            <!--<div class="post">-->
+                                <!--<div class="user-block">-->
+                                    <!--<img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"-->
+                                         <!--alt="user image">-->
+                                    <!--<span class="username">-->
+                          <!--<a href="#">Jonathan Burke Jr.</a>-->
+                        <!--</span>-->
+                                    <!--<span class="description">Shared publicly - 7:30 PM today</span>-->
+                                <!--</div>-->
+                                <!--<p>-->
+                                    <!--Lorem ipsum represents a long-held tradition for designers,-->
+                                    <!--typographers and the like. Some people hate it and argue for-->
+                                    <!--its demise, but others ignore the hate as they create awesome-->
+                                    <!--tools to help create filler text for everyone from bacon lovers-->
+                                    <!--to Charlie Sheen fans.-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>-->
+                                    <!--<a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i>-->
+                                        <!--Like</a>-->
+                                    <!--<span class="float-right">-->
+                                      <!--<a href="#" class="link-black text-sm">-->
+                                        <!--<i class="far fa-comments mr-1"></i> Comments (5)-->
+                                      <!--</a>-->
+                                    <!--</span>-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 ">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
+                                 alt="user image">
+                            <span class="username">
+                                 <a href="#" id="textareaname"></a>
+                                    </span>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="tab-content">
+                            <div class="tab-pane active">
+                                <form class="form-horizontal">
+                                    <div class="form-group row">
+                                        <textarea class="form-control" id="leavemessage" placeholder="留個言交流一下吧！"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-10 col-sm-8 ">
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-2 col-sm-4">
+                                            <a noed class="btn btn-block btn-primary" onclick="leavemessage()">
+                                                送出留言
+                                            </a>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
 
         </section>
         <!-- /.content -->

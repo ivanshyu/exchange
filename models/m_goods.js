@@ -95,4 +95,37 @@ Model.has = function(data, callback) {
     });
 };
 */
-module.exports = {goodsInsert, goodsFindOne, goodsDetail, goodsFindByOwner};
+
+
+messageInsert = async function(data) {
+    return new Promise(async(resolve, reject) => {
+        client.db("db").collection("Message").insertOne((data), async(err, rsp) => {
+            if(err){
+                reject(err);
+            }
+            else{
+                console.log(rsp.ops)
+                resolve("新增message成功");
+            }
+        });
+    });
+};
+
+messageFindByGoodsOwner = async function(data) {
+    return new Promise((resolve, reject) => {
+        client.db("db").collection("Message").find(data).toArray(async(err, rsp) => {
+            if (err) {
+                reject(err);
+            }
+            else if(rsp == null){
+                resolve({"msg": false});
+            }
+            else{
+                resolve({"msg": rsp});
+            }
+        })
+    })
+}
+
+
+module.exports = {goodsInsert, goodsFindOne, goodsDetail, goodsFindByOwner,messageInsert,messageFindByGoodsOwner};

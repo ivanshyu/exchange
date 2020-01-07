@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 var ObjectId = require('mongodb').ObjectID;
+var sd = require('silly-datetime');
 
 var {accountInsert, accountFindOne, accountDetail, accountUpdateOne} = require('../models/m_account');
-var {goodsFindOne} = require('../models/m_goods');
+var {goodsFindOne,messageInsert,messageFindByGoodsOwner} = require('../models/m_goods');
 
 
 router.post('/register', async function(req, res, next) {
@@ -238,5 +239,75 @@ router.get('/favorite_list', async function(req, res, next) {
     }
   }
 });
+
+
+router.post('/messagebar', async function(req, res, next) {
+  let result = await accountDetail({
+    email: req.decoded.email
+  }).catch(err => {
+    res.json(err);
+  });
+  if(result != undefined){
+
+    var time=sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
+    console.log(time);
+
+
+    let resultresult = await messageInsert({
+      id: req.body.id,
+      email: req.decoded.email,
+      name: req.decoded.name,
+      message: req.body.message,
+      time:time
+    }).catch(err =>{
+      console.log("error here");
+      res.json({
+        status: false,
+        msg: err
+      });
+    });
+    if(resultresult != undefined){
+      console.log(resultresult);
+      res.json({
+        status: true,
+        msg: resultresult
+      });
+    }
+  }
+});
+
+router.get('/messagebar', async function(req, res, next) {
+  let result = await accountDetail({
+    email: req.decoded.email
+  }).catch(err => {
+    res.json(err);
+  });
+  if(result != undefined){
+      let message = await messageFindByGoodsOwner({
+        "id": req.query.id
+      }).catch(err =>{
+        res.json({
+          status: false,
+          msg: err
+        });
+      });
+      console.log("message.msg:",message.msg)
+      if(message.msg[0] != undefined){
+        //console.log(good[0])
+            res.json({
+              status: true,
+              msg: message.msg
+            })
+      }else{
+        res.json({
+          status: false
+        })
+      }
+    }
+});
+
+
+
+
 
 module.exports = router;
