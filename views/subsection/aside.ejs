@@ -5,9 +5,8 @@
         url: "/users/verify",
         data: {},
         success: function (msg) {
-            console.log(msg.status);
+            console.log("jwt",msg.status);
             if (msg.status === true) {
-                console.log("ccc")
                 var logindiv = `
             <div class="image">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -148,65 +147,39 @@
         }
     }
 
-    async function checkJwt() {
-        if(await getCookie("access_token")){
-            return "";
-        }else {
-            swal("請先登入", "You clicked the button!", "warning")
-                .then((value) => {
-                    window.location.href = "/login";
-                });
-        }
-    }
-
 
     function uploaditem() {
 
-        
         var inputName = $("#inputName").val();
         var inputCategory = $("#inputCategory").val();
         var inputTime = $("#inputTime").val();
         var inputDescription = $("#inputDescription").val();
         var inputLocal = $("#inputLocal").val();
+        var inputImg = $("#progressbarTWInput").val();
+
+        var formData = new FormData();
+        formData.append("image",$('#progressbarTWInput')[0].files[0]);
 
         console.log(inputName, inputCategory, inputTime, inputDescription, inputLocal)
 
-        // $.ajax({
-        //     type: 'POST',
-        //     url: "/users/register",
-        //     data: {
-        //         email: email,
-        //         name: name,
-        //         password: password,
-        //         address_nation: address_nation,
-        //         address_city: address_city,
-        //         address_dist: address_dist,
-        //         address_street: address_street,
-        //         address_section: address_section,
-        //         address_other: address_other
-        //     },
-        //     success: function (msg) {
-        //         console.log(msg);
-        //
-        //
-        //         if (msg.status === true) {
-        //             // var msg = jQuery.parseJSON(messanger);
-        //             swal("註冊成功", "You clicked the button!", "success")
-        //                 .then((value) => {
-        //                     window.location.href = "/";
-        //                 });
-        //         } else {
-        //             console.log("失敗", msg)
-        //             swal(msg.msg, "You clicked the button!", "warning")
-        //         }
-        //
-        //     },
-        //     error: function (errors) {
-        //         console.log(errors);
-        //         swal("註冊失敗了", "You clicked the button!", "warning")
-        //     }
-        // })
+        $.ajax({
+            type: 'POST',
+            url: "/upload",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (msg) {
+                console.log(msg);
+            },
+            error: function (errors) {
+                console.log(errors);
+                swal("圖片上傳失敗", "You clicked the button!", "warning")
+            }
+        })
     }
+
+
+
 
 
 
