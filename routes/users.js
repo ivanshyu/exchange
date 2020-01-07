@@ -187,8 +187,8 @@ router.post('/favorite_list', async function(req, res, next) {
         });
         if(result != undefined){
           res.json({
-            status: false,
-            msg: result
+            status: true,
+            msg: result.result.nModified
           })
         }
       }
@@ -209,7 +209,7 @@ router.post('/favorite_list', async function(req, res, next) {
         }
       }
     }else{
-      es.json({
+      res.json({
         status: false
       })
     }
