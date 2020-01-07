@@ -12,7 +12,6 @@ $.ajax({
         var item_number = 0;
         let item_image = [];
         for (let i = 0; i < msg.msg.length; i++) {
-            console.log(msg.msg[i].owner);
             if (msg.msg[i].owner == user) {
                 item[item_number] = msg.msg[i].title;
                 item_id[item_number] = msg.msg[i]._id;
