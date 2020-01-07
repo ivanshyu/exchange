@@ -40,7 +40,8 @@ $.ajax({
                     row += '<div class="ribbon bg-success text-lg">New!</div></div>'
                 }
 
-                row += '<h5>' + category[r_i] + '</h5></div></div>'
+                row += `<div class="small-box bg-gray"><a class="small-box-footer"> ${category[r_i]} <i class="fas fa-arrow-circle-right"></i></a></div></div></div>`
+
             }
             row += '</div>';
         }
