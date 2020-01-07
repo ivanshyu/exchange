@@ -11,7 +11,7 @@ $.ajax({
             category[i] = msg.msg[i].class;
             category_image[i] = msg.msg[i].image;
         }
-        
+
         let ribbon = ['hot', 'new', 'none', 'none', 'none', 'none', 'none'];
         var row = '';
 
@@ -29,7 +29,7 @@ $.ajax({
                 }
                 row += '<div class="col-sm-4" id=' + category[r_i] + ' onclick="location.href=\'category/' + category[r_i] + '\'">'
                 row += '<div class="position-relative p-3 bg-gray" style="height: 180px">'
-                row += '<div style="text-align:center"><img src="/images/' + category_image[r_i] + '" width="50%"></div>'
+                row += '<div style="text-align:center"><img src="/' + category_image[r_i] + '" width="50%"></div>'
 
                 if (ribbon[r_i] == 'hot') {
                     row += '<div class="ribbon-wrapper ribbon-lg">'
