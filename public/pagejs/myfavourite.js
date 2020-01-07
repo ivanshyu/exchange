@@ -1,23 +1,20 @@
 $.ajax({
     type: 'GET',
-    url: "/goods",
+    url: "/users/favorite_list",
     data: {
     },
     success: function (msg) {
-
-        var user = getCookie("email");
 
         let item = [];
         let item_id = [];
         var item_number = 0;
         let item_image = [];
-        for (let i = 0; i < msg.msg.length; i++) {
-            if (msg.msg[i].owner == user) {
-                item[item_number] = msg.msg[i].title;
-                item_id[item_number] = msg.msg[i]._id;
-                item_image[item_number] = msg.msg[i].image;
-                item_number++;
-            }
+        for (let i = 0; i < msg.favorite_list.length; i++) {
+            item[item_number] = msg.favorite_list[i].title;
+            item_id[item_number] = msg.favorite_list[i]._id;
+            item_image[item_number] = msg.favorite_list[i].image;
+            item_number++;
+
         }
         let ribbon = ['new', 'new', 'none', 'none'];
         var row = '';
@@ -51,8 +48,8 @@ $.ajax({
             row += '</div>';
         }
 
-        if (item.length == 0) {
-            row = '尚未新增物品';
+        if(msg.favorite_list=="您目前沒有收藏的物品"){
+            row = '您目前沒有收藏的物品';
         }
 
         $('#card_body').html(row)
