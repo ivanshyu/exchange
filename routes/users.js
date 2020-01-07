@@ -46,6 +46,7 @@ router.post('/register', async function(req, res, next) {
 });
 
 router.post('/login', async function(req, res, next) {
+  console.log("req.body:",req.body)
   if(req.body.email == undefined || req.body.password == undefined){
     res.json({
       status: false,
@@ -77,6 +78,34 @@ router.post('/login', async function(req, res, next) {
     });  
   }
 });
+
+router.post('/verify' ,async function(req, res, next){
+  let token = req.cookies.access_token
+  console.log(token);
+  if (typeof token != 'undefined') {
+    // Remove Bearer from string
+    jwt.verify(token, "ftP@jdnfkljdsbvdskjvbdkvn", (err, decoded) => {
+      if (err) {
+        res.json({
+          status: false,
+          msg: 'Token is not valid'
+        });
+      } else {
+        res.cookie('email', decoded.email);
+        res.cookie('name', decoded.name);
+        res.json({
+          status:true,
+          msg: "認證成功"
+        });
+      }
+    });
+  } else {
+    res.json({
+      status: false,
+      msg: 'Authorization 格式錯誤'
+    });
+  }
+})
 
 router.use(async function(req, res, next){
   let token = req.cookies.access_token

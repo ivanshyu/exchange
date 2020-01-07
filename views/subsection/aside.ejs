@@ -1,90 +1,146 @@
 <script type="text/javascript">
-    var jwt = "";
-    function register(){
+
+
+    if (getCookie("access_token") !== "") {
+        // alert("AAAAAAA");
+        $.ajax({
+            type: 'POST',
+            url: "/users/verify",
+            data: {},
+            success: function (msg) {
+                console.log(msg);
+                var logindiv = `
+<div class="image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info" >
+                <a href="/myaccount" class="d-block">${getCookie("name")}</a>
+<span class="badge badge-info right"><a href="#" class="d-block">登出</a></span>
+            </div>
+
+
+
+
+
+
+
+                      `
+                $("#logindiv").html(logindiv)
+            },
+            error: function (errors) {
+                console.log(errors);
+            }
+        })
+    } else {
+        var logindiv = `<a href="/myaccount" class="d-block">登入</a>`
+        $("#logindiv").html(logindiv)
+    }
+
+    function register() {
 
         var email = $("input[name='email']").val();
         var name = $("input[name='name']").val();
-        var password= $("input[name='password']").val();
-        var address_nation =  $("input[name='address_nation']").val();
+        var password = $("input[name='password']").val();
+        var address_nation = $("input[name='address_nation']").val();
         var address_city = $("input[name='address_city']").val();
         var address_dist = $("input[name='address_dist']").val();
         var address_street = $("input[name='address_street']").val();
         var address_section = $("input[name='address_section']").val();
         var address_other = $("input[name='address_other']").val();
 
-        console.log(email,name,password,address_nation,address_city,address_dist,address_street,address_section,address_other)
+        console.log(email, name, password, address_nation, address_city, address_dist, address_street, address_section, address_other)
 
         $.ajax({
             type: 'POST',
             url: "/users/register",
             data: {
-                email:email,
-                name:name,
-                password:password,
-                address_nation:address_nation,
-                address_city:address_city,
-                address_dist:address_dist,
-                address_street:address_street,
-                address_section:address_section,
-                address_other:address_other
+                email: email,
+                name: name,
+                password: password,
+                address_nation: address_nation,
+                address_city: address_city,
+                address_dist: address_dist,
+                address_street: address_street,
+                address_section: address_section,
+                address_other: address_other
             },
-            success:function(msg){
+            success: function (msg) {
                 console.log(msg);
                 // var msg = jQuery.parseJSON(messanger);
-                alert(msg.msg) ;
-                setTimeout(function() {
+                alert(msg.msg);
+                setTimeout(function () {
                     window.location.href = "/";
                 }, 1000);
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
             }
         })
     }
-    function login(){
+
+    function login() {
 
         var email = $("input[name='email']").val();
-        var password= $("input[name='password']").val();
-        console.log(email,password)
+        var password = $("input[name='password']").val();
+        console.log(email, password)
         $.ajax({
             type: 'POST',
             url: "/users/login",
             data: {
-                email:email,
-                password:password
+                email: email,
+                password: password
             },
-            success:function(msg){
+            success: function (msg) {
                 console.log(msg);
-                alert(msg.jwt) ;
-                token = msg.jwt;
-
-                setTimeout(function() {
+                alert(msg.jwt);
+                setTimeout(function () {
                     window.location.href = "/";
                 }, 1000);
 
 
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
             }
         })
     }
-    function getMenu(){
+
+    function getMenu() {
         var url = "http://localhost:8080/nbmweb/jwt/getMenu";
-        console.log("url-->"+url);
-        console.log("token-->"+token);
+        console.log("url-->" + url);
+        console.log("token-->" + token);
         $.ajax({
             type: 'POST',
             url: url,
-            data:"token="+token,
-            success:function(msg){
+            data: "token=" + token,
+            success: function (msg) {
                 console.log(msg);
             },
-            error:function(errors){
+            error: function (errors) {
                 console.log(errors);
             }
         })
     }
+
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+
 </script>
 
 <!-- Main Sidebar Container -->
@@ -101,12 +157,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex"   id="logindiv" >
             <div class="image">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
-            <div class="info">
-                <a href="/login" class="d-block">登入 ＆＆ 我是誰</a>
+            <div class="info" >
+                <a href="/login" class="d-block"></a>
             </div>
         </div>
 
@@ -320,7 +376,6 @@
                         </li>
                     </ul>
                 </li>
-
 
 
             </ul>
