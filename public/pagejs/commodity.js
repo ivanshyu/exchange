@@ -54,9 +54,9 @@ function onclickmylove() {
         success: function (msg) {
             console.log(msg)
             if(msg.status === true){
-                swal("加到我的最愛成功", "You clicked the button!", "success")
+                swal("加到我的最愛成功", "", "success")
             }else{
-                swal(加到我的最愛失敗, "You clicked the button!", "warning")
+                swal("加到我的最愛失敗", "", "warning")
             }
         },
         error: function (errors) {
@@ -129,12 +129,12 @@ function leavemessage() {
         success: function (msg) {
             console.log(msg)
             if(msg.status === true){
-                swal("留言成功", "You clicked the button!", "success")
+                swal("留言成功", "做得好!", "success")
                     .then((value) => {
                         window.location.reload();
                 });
             }else{
-                swal("留言失敗", "You clicked the button!", "warning")
+                swal("留言失敗", "QQ", "warning")
             }
         },
         error: function (errors) {

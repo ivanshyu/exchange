@@ -65,19 +65,19 @@
 
                 if (msg.status === true) {
                     // var msg = jQuery.parseJSON(messanger);
-                    swal("註冊成功", "You clicked the button!", "success")
+                    swal("註冊成功", "趕緊去登入吧", "success")
                         .then((value) => {
                             window.location.href = "/";
                         });
                 } else {
                     console.log("失敗", msg)
-                    swal(msg.msg, "You clicked the button!", "warning")
+                    swal(msg.msg, "QQ", "warning")
                 }
 
             },
             error: function (errors) {
                 console.log(errors);
-                swal("註冊失敗了", "You clicked the button!", "warning")
+                swal("註冊失敗了", "QQ", "warning")
             }
         })
     }
@@ -97,12 +97,12 @@
             success: function (msg) {
                 console.log(msg);
                 if(msg.status === true){
-                swal(msg.msg, "You clicked the button!", "success")
+                swal(msg.msg, "", "success")
                     .then((value) => {
                         window.location.href = "/";
                     });
                 }else{
-                    swal(msg.msg.toString(), "You clicked the button!", "warning")
+                    swal(msg.msg.toString(), "", "warning")
                 }
 
             },
@@ -195,13 +195,13 @@
                                 });
                         } else {
                             console.log(msg.msg)
-                            swal(msg.msg, "You clicked the button!", "warning")
+                            swal(msg.msg, "", "warning")
                         }
 
                     },
                     error: function (errors) {
                         console.log(errors);
-                        swal("新增商品失敗了", "You clicked the button!", "warning")
+                        swal("新增商品失敗了", "", "warning")
                     }
                 })
 
@@ -217,7 +217,7 @@
             },
             error: function (errors) {
                 console.log(errors);
-                swal("圖片上傳失敗", "You clicked the button!", "warning")
+                swal("圖片上傳失敗", "QQ!", "warning")
             }
         })
     }
