@@ -15,11 +15,11 @@ accountInsert = async function(data) {
                 }
                 else{
                     console.log("新增成功")
-                    resolve(rsp);
+                    resolve(rsp.ops[0]);
                 }
             });   
         });
-        if(result == true){
+        if(result != undefined){
             console.log("has been registered")
             reject("此帳號已被註冊囉！");
         }
