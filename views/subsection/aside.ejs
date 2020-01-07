@@ -106,7 +106,6 @@
                     swal(msg.msg.toString(), "You clicked the button!", "warning")
                 }
 
-
             },
             error: function (errors) {
                 console.log(errors);
@@ -136,7 +135,7 @@
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
             var c = ca[i].trim();
-            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            if (c.indexOf(name) == 0) return decodeURIComponent(c.substring(name.length, c.length));
         }
         return "";
     }
@@ -149,50 +148,67 @@
         }
     }
 
+    async function checkJwt() {
+        if(getCookie("access_token")){
+            return "";
+        }else {
+            swal("請先登入", "You clicked the button!", "warning")
+                .then((value) => {
+                    window.location.href = "/login";
+                });
+        }
+    }
+
+
     function uploaditem() {
+
+        checkJwt(){
+
+        }
+
         var inputName = $("#inputName").val();
         var inputCategory = $("#inputCategory").val();
         var inputTime = $("#inputTime").val();
         var inputDescription = $("#inputDescription").val();
         var inputLocal = $("#inputLocal").val();
 
-        console.log(email, name, password, address_nation, address_city, address_dist, address_street, address_section, address_other)
+        console.log(inputName, inputCategory, inputTime, inputDescription, inputLocal)
 
-        $.ajax({
-            type: 'POST',
-            url: "/users/register",
-            data: {
-                email: email,
-                name: name,
-                password: password,
-                address_nation: address_nation,
-                address_city: address_city,
-                address_dist: address_dist,
-                address_street: address_street,
-                address_section: address_section,
-                address_other: address_other
-            },
-            success: function (msg) {
-                console.log(msg);
-
-
-                if (msg.status === true) {
-                    // var msg = jQuery.parseJSON(messanger);
-                    swal("註冊成功", "You clicked the button!", "success")
-                        .then((value) => {
-                            window.location.href = "/";
-                        });
-                } else {
-                    console.log("失敗", msg)
-                    swal(msg.msg, "You clicked the button!", "warning")
-                }
-
-            },
-            error: function (errors) {
-                console.log(errors);
-                swal("註冊失敗了", "You clicked the button!", "warning")
-            }
-        })
+        // $.ajax({
+        //     type: 'POST',
+        //     url: "/users/register",
+        //     data: {
+        //         email: email,
+        //         name: name,
+        //         password: password,
+        //         address_nation: address_nation,
+        //         address_city: address_city,
+        //         address_dist: address_dist,
+        //         address_street: address_street,
+        //         address_section: address_section,
+        //         address_other: address_other
+        //     },
+        //     success: function (msg) {
+        //         console.log(msg);
+        //
+        //
+        //         if (msg.status === true) {
+        //             // var msg = jQuery.parseJSON(messanger);
+        //             swal("註冊成功", "You clicked the button!", "success")
+        //                 .then((value) => {
+        //                     window.location.href = "/";
+        //                 });
+        //         } else {
+        //             console.log("失敗", msg)
+        //             swal(msg.msg, "You clicked the button!", "warning")
+        //         }
+        //
+        //     },
+        //     error: function (errors) {
+        //         console.log(errors);
+        //         swal("註冊失敗了", "You clicked the button!", "warning")
+        //     }
+        // })
     }
 
 
