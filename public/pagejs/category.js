@@ -7,18 +7,21 @@ $.ajax({
         var string = $('#card_title').text();
         string = string.split(":")
         category = string[1]
-
+        
         let item = [];
         let item_id = [];
+        let item_image = [];
         var item_number = 0;
-        for (let i = 0; i < msg.msg.length; i++) {
+        for (let i = 0; i < msg.msg.length; i++) {            
             if (msg.msg[i].class == category) {
                 item[item_number] = msg.msg[i].title;
+                console.log(msg.msg[i].title);
                 item_id[item_number] = msg.msg[i]._id;
+                item_image[item_number]=msg.msg[i].image;
                 item_number++;
             }
         }
-        let item_image = ['prod-1.jpg', 'prod-1.jpg', 'prod-1.jpg', 'prod-1.jpg']
+
         let ribbon = ['new', 'new', 'none', 'none'];
 
         var row = '';

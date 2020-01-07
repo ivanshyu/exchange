@@ -61,7 +61,7 @@ router.use('/', async function(req, res, next){
   
 router.post('/', async function(req, res, next) {
     let result = await goodsInsert({
-        tilte: req.body.title,
+        title: req.body.title,
         class: req.body.class,
         description: req.body.description,
         owner: req.decoded.email,

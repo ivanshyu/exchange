@@ -6,10 +6,12 @@ $.ajax({
     success: function (msg) {
 
         let category = [];
+        let category_image = [];
         for (let i = 0; i < msg.msg.length; i++) {
             category[i] = msg.msg[i].class;
+            category_image[i] = msg.msg[i].image;
         }
-        let category_image = ['item02.jpg', 'item01.jpg', 'item03.jpg', 'pic01.jpg', 'pic02.jpg', 'pic03.jpg', 'pic04.jpg']
+        
         let ribbon = ['hot', 'new', 'none', 'none', 'none', 'none', 'none'];
         var row = '';
 
