@@ -64,7 +64,7 @@ router.post('/login', async function(req, res, next) {
   });
   console.log(result);
   if(result != undefined){
-    let token = jwt.sign({ email: result.email, name: result.name ,exp: Math.floor(Date.now() / 1000) + (60 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
+    let token = jwt.sign({ email: result.email, name: result.name ,exp: Math.floor(Date.now() / 1000) + (600000 * 60) }, "ftP@jdnfkljdsbvdskjvbdkvn");
     res.cookie('access_token', token);
     res.json({
       msg: "登入成功",

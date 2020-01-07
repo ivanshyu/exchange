@@ -65,12 +65,19 @@ router.post('/', async function(req, res, next) {
         class: req.body.class,
         description: req.body.description,
         owner: req.decoded.email,
+        time: req.body.time,
         place: req.body.place,
         image: req.body.path
     }).catch(err => {
-        res.send(err);
+        res.json({
+            status: "false",
+            msg: '新增物品失敗'
+        });
     });
-    res.send("新增成功");
+    res.json({
+        status: "success",
+        msg: '新增物品成功'
+    });
 
 });
 

@@ -170,6 +170,50 @@
             contentType: false,
             success: function (msg) {
                 console.log(msg);
+                console.log(msg.filePath.path);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/goods",
+                    data: {
+                        title: inputName,
+                        class: inputCategory,
+                        description: inputDescription,
+                        email: getCookie("email"),
+                        time:inputTime,
+                        place: inputLocal,
+                        path: msg.filePath.path
+                    },
+                    success: function (msg) {
+                        console.log(msg);
+
+                        if (msg.status === "success") {
+                            // var msg = jQuery.parseJSON(messanger);
+                            swal(msg.msg, "You clicked the button!", "success")
+                                .then((value) => {
+                                    window.location.href = "/managementitems";
+                                });
+                        } else {
+                            console.log(msg.msg)
+                            swal(msg.msg, "You clicked the button!", "warning")
+                        }
+
+                    },
+                    error: function (errors) {
+                        console.log(errors);
+                        swal("新增商品失敗了", "You clicked the button!", "warning")
+                    }
+                })
+
+
+
+
+
+
+
+
+
+
             },
             error: function (errors) {
                 console.log(errors);
