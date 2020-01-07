@@ -149,7 +149,7 @@
     }
 
     async function checkJwt() {
-        if(getCookie("access_token")){
+        if(await getCookie("access_token")){
             return "";
         }else {
             swal("請先登入", "You clicked the button!", "warning")
@@ -162,10 +162,7 @@
 
     function uploaditem() {
 
-        checkJwt(){
-
-        }
-
+        
         var inputName = $("#inputName").val();
         var inputCategory = $("#inputCategory").val();
         var inputTime = $("#inputTime").val();
