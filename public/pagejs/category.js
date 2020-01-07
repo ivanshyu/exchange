@@ -53,7 +53,7 @@ $.ajax({
             row += '</div>';
         }
 
-        if(item.length == 0){
+        if (item.length == 0) {
             row = '系統忙碌中~';
         }
 
