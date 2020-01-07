@@ -51,13 +51,44 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h3 class="my-3" id="commodity_name2"></h3>
-                            <p id="info1"></p>
+
+                            <hr>
+                            <div class="card-body">
+                                <strong ><i class="fas fa-book mr-1"></i> 商品名稱</strong>
+                                <br><br>
+                                <h3 class="text-muted" id="commodity_name2"></h3>
+
+                                <hr>
+
+                                <strong><i class="fas fa-list-alt mr-1"></i> 詳細資訊</strong>
+                                <br>
+
+                                <p class="text-muted" id="info1"></p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-calendar-alt mr-1"></i> 入手時間</strong>
+                                <br>
+
+                                <p class="text-muted" id="infotime"></p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> 期望交換地點</strong>
+                                <br>
+
+                                <p class="text-muted" id="infoplace"></p>
+
+                                <hr>
+                            </div>
+
+
+
 
                             <hr>
                             
                             <div class="mt-4">
-                                <div class="btn btn-default btn-lg btn-flat">
+                                <div class="btn btn-default btn-lg btn-flat" onclick="onclickmylove()">
                                     <i class="fas fa-heart fa-lg mr-2"></i>
                                     Add to My favorite
                                 </div>
@@ -80,20 +111,7 @@
 
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <nav class="w-100">
-                            <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#info2" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
-                                <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Comments</a>
-                                <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
-                            </div>
-                        </nav>
-                        <div class="tab-content p-3" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="info2" role="tabpanel" aria-labelledby="product-desc-tab"></div>
-                            <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"></div>
-                            <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"></div>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- /.card-body -->
             </div>
