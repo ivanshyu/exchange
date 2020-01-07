@@ -225,6 +225,50 @@
 
 
 
+    window.addEventListener('load', function () {
+        console.log(window.location.href.indexOf("category"))
+
+        if(window.location.href.indexOf("category")!==-1){
+            $("#navcategory").addClass("active");
+        }
+        else if(window.location.href.indexOf("myfavourite")!==-1) {
+            $("#navmyfavourite").addClass("active");
+        }
+        else if(window.location.href.indexOf("myaccount")!==-1) {
+            $("#navmyaccount").addClass("active");
+        }
+        else if(window.location.href.indexOf("orderinformation")!==-1) {
+            $("#navmyaccount").addClass("active");
+        }
+        else if(window.location.href.indexOf("managementitems")!==-1) {
+            $("#navmanagementitems").addClass("active");
+        }
+        else if(window.location.href.indexOf("newitem")!==-1) {
+            $("#navmanagementitems").addClass("active");
+        }
+        else if(window.location.href.indexOf("wishlist")!==-1) {
+            $("#navwishlist").addClass("active");
+        }else if(window.location.href.indexOf("newwishlist")!==-1) {
+            $("#navwishlist").addClass("active");
+        }else if(window.location.href.indexOf("advancedsearch")!==-1) {
+            $("#navadvancedsearch").addClass("active");
+        }
+        else if(window.location.href.indexOf("announcement")!==-1) {
+            $("#navannouncement").addClass("active");
+        }
+        else if(window.location.href.indexOf("guide")!==-1) {
+            $("#navguide").addClass("active");
+        }
+        else if(window.location.href.indexOf("commonproblem")!==-1) {
+            $("#navcommonproblem").addClass("active");
+        }
+        else if(window.location.href.indexOf("chatroom")!==-1) {
+            $("#navchatroom").addClass("active");
+        }
+
+
+    })
+
 
 
 
@@ -260,7 +304,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="" class="nav-link " id="navcategory">
                         <i class="nav-icon fas fa-exchange-alt"></i>
                         <p>
                             交換類別
@@ -269,7 +313,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/category/男鞋" class="nav-link">
+                            <a href="/category/男鞋" class="nav-link" >
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>男鞋</p>
                             </a>
@@ -296,7 +340,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/myfavourite" class="nav-link">
+                    <a href="/myfavourite" class="nav-link" id="navmyfavourite">
                         <i class="nav-icon fas fa-heart"></i>
                         <p>我的最愛</p>
                     </a>
@@ -304,7 +348,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navmyaccount">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>
                             會員
@@ -312,12 +356,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/register" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>註冊會員</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="/myaccount" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -336,7 +374,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navmanagementitems">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>
                             我的交換物品
@@ -360,7 +398,7 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" id="navwishlist">
                         <i class="nav-icon fas fa-praying-hands"></i>
                         <p>
                             我的許願物品
@@ -385,84 +423,34 @@
 
 
                 <li class="nav-item">
-                    <a href="/advancedsearch" class="nav-link">
+                    <a href="/advancedsearch" class="nav-link"id="navadvancedsearch">
                         <i class="nav-icon fas fa-search-plus"></i>
                         <p>進階搜尋</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/announcement" class="nav-link">
+                    <a href="/announcement" class="nav-link"id="navannouncement">
                         <i class="nav-icon fas fa-bullhorn"></i>
                         <p>公告</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/guide" class="nav-link">
+                    <a href="/guide" class="nav-link" id="navguide">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>教學</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/commonproblem" class="nav-link">
+                    <a href="/commonproblem" class="nav-link" id="navcommonproblem">
                         <i class="nav-icon fas fa-question-circle"></i>
                         <p>常見問題</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/chatroom" class="nav-link">
+                    <a href="/chatroom" class="nav-link" id="navchatroom">
                         <i class="nav-icon far fa-comments"></i>
                         <p>聊天室</p>
                     </a>
-                </li>
-
-
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Layout Options
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../layout/top-nav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/boxed.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Boxed</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-sidebar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Sidebar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-topnav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Navbar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/fixed-footer.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Footer</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Collapsed Sidebar</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
 
