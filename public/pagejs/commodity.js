@@ -22,7 +22,9 @@ $.ajax({
         image += '">';
         $('#h1_title').html(category + ' / ' + commodity_name);
 
-        $('#info').html(info);
+        $('#info1').html(info);
+        $('#info2').html(info);
+
         $('#commodity_name1').html(commodity_name);
         $('#commodity_name2').html(commodity_name);
         $('#main_image').html(image);

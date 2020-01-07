@@ -11,7 +11,7 @@ $.ajax({
             category[i] = msg.msg[i].class;
             category_image[i] = msg.msg[i].image;
         }
-
+        console.log(category_image);
         let ribbon = ['hot', 'new', 'none', 'none', 'none', 'none', 'none'];
         var row = '';
 
