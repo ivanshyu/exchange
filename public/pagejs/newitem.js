@@ -1,3 +1,6 @@
+
+window.addEventListener('load', function () {
+
 $.ajax({
     type: 'GET',
     url: "goods/classify",
@@ -21,6 +24,8 @@ $.ajax({
     error: function (errors) {
         console.log(errors);
     }
+})
+
 })
 
 

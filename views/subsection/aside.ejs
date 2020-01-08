@@ -267,6 +267,38 @@
         }
 
 
+        $.ajax({
+            type: 'GET',
+            url: "/goods/classify",
+            data: {
+            },
+            success: function (msg) {
+
+                let category = [];
+                for (let i = 0; i < msg.msg.length; i++) {
+                    category[i] = msg.msg[i].class;
+                }
+                var row = ""
+
+                for (let n = 0; n < category.length ; n++) {
+                    row += `<li class="nav-item">
+                            <a href="/category/${category[n]}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>${category[n]}</p>
+                            </a>
+                        </li>\n`
+                }
+
+
+                $('#categorylist').html(row)
+            },
+            error: function (errors) {
+                console.log(errors);
+            }
+        })
+
+
+
     })
 
 
@@ -311,7 +343,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <ul class="nav nav-treeview" id="categorylist">
                         <li class="nav-item">
                             <a href="/category/男鞋" class="nav-link" >
                                 <i class="far fa-circle nav-icon"></i>
